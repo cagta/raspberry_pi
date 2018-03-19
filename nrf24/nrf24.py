@@ -10,7 +10,8 @@
 import time
 from datetime import datetime
 import sys
-from RF24 import *
+from struct import unpack
+from RF24 import RF24
 import psycopg2
 
 irq_gpio_pin = None
