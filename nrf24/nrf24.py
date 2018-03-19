@@ -28,8 +28,8 @@ radio = RF24(22, 0)
 def get_data_from_node():
 	if radio.available():
 		while radio.available():
-			len = 10
-			receive_payload = radio.read(len)
+			length = 10
+			receive_payload = radio.read(length)
 			values = unpack('hhhhh',receive_payload)
 			print "Node Number: "+str(values[0])+"\nLight: "+str(values[1])+" Humidity: "+str(values[2])+" Temperature: "+str(values[3])+" MQ6: "+str(values[4])
 			#TIMESTAMPT = "(%s)",(datetime.now(),)
