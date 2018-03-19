@@ -21,7 +21,7 @@ radio = RF24(22, 0)
 
 #EXAMPLE_TIMESTAMPT=strftime("%Y-%m-%d %H:%M:%S", gmtime())
 #EXAMPLE_LOG="""INSERT INTO LOGS
-#(HUMIDITY,TEMPERATURE,PRESSURE,AIR_QUALITY,READING_TIME,LOG_TIME,BASE_STATION_ID) 
+#(HUMIDITY,TEMPERATURE,PRESSURE,AIR_QUALITY,READING_TIME,LOG_TIME,BASE_STATION_ID)
 #VALUES("""+str(values[1])+"','"+str(values[2])+"','"+str(values[3])+"','"+values[4]+"','"+str(EXAMPLE_TIMESTAMPT)+"','"+str(EXAMPLE_TIMESTAMPT)+"""',1)
 #"""
 
@@ -37,12 +37,12 @@ def get_data_from_node():
 			write_to_db(LOG)
 
 def write_to_db(LOG):
-	try: 
-		con = psycopg2.connect(database='dname', user='uname', password='pass') 
+	try:
+		con = psycopg2.connect(database='dname', user='uname', password='pass')
 		con.cursor().execute(LOG)
 		con.commit()
 	except psycopg2.DatabaseError, e:
-		print 'Error %s' % e    
+		print 'Error %s' % e
 		sys.exit(1)
 
 pipes = ["0Node", "1Node"]
