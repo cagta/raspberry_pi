@@ -33,13 +33,16 @@ def get_data_from_node():
 			values = unpack('hhhhh',receive_payload)
 			print "Node Number: "+str(values[0])+"\nLight: "+str(values[1])+" Humidity: "+str(values[2])+" Temperature: "+str(values[3])+" MQ6: "+str(values[4])
 			#TIMESTAMPT = "(%s)",(datetime.now(),)
-			LOG="INSERT INTO LOGS (HUMIDITY,TEMPERATURE,PRESSURE,AIR_QUALITY,READING_TIME,LOG_TIME,BASE_STATION_ID)	VALUES("+str(values[1])+","+str(values[2])+","+str(values[3])+","+str(values[4])+",('%s'),('%s'),1);" % (datetime.now(),datetime.now(),)
-			write_to_db(LOG)
+			#LOG="INSERT INTO LOGS (HUMIDITY,TEMPERATURE,PRESSURE,AIR_QUALITY,READING_TIME,LOG_TIME,BASE_STATION_ID)	VALUES("+str(values[1])+","+str(values[2])+","+str(values[3])+","+str(values[4])+",('%s'),('%s'),1);" % (datetime.now(),datetime.now(),)
+			log="INSERT INTO LOGS (HUMIDITY,TEMPERATURE,PRESSURE,AIR_QUALITY,READING_TIME,LOG_TIME,BASE_STATION_ID) VALUES (%s, %s, %s, %s, %s, %s, %s);"
+			vals = values[:4] + [datetime.now(),datetime.now(), 1]
+			write_to_db(log, vals)
+			#write_to_db(LOG)
 
-def write_to_db(LOG):
+def write_to_db(log, vals):
 	try:
 		con = psycopg2.connect(database='dname', user='uname', password='pass')
-		con.cursor().execute(LOG)
+		con.cursor().execute(log, vals)
 		con.commit()
 	except psycopg2.DatabaseError, e:
 		print 'Error %s' % e
