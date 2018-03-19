@@ -1,5 +1,4 @@
 # raspberry_pi
-My public codes, which are written for raspberry pi projects.
 
 **Communication**
 _____________
