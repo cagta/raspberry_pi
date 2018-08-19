@@ -4,8 +4,8 @@
 	This code includes usage of nRF24L01 on Arduino Uno.
 	Connection table = http://tmrh20.github.io/RF24/
 
-	@author Çağatay Tanyıldız
-	@email  cagataytanyildiz[at]protonmail[dot]com
+	@author Cagatay Tanyildiz
+	@email  cagta[at]pm[dot]me
 '''
 import time
 from datetime import datetime
